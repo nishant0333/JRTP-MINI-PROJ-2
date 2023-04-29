@@ -136,6 +136,21 @@ public class EnquiryController {
 			StudentEnqEntity studentEnqEntity = findById.get();
 			
 			
+			
+			//get courses for the drop down
+			List<String> courseNames = studentEnquiryService.getCourseNames();
+			//get enq status for drop down
+			List<String> enqStatus = studentEnquiryService.getEnqStatus();
+			//create binding class object
+			EnquiryForm formObj=new EnquiryForm();
+			
+			BeanUtils.copyProperties(studentEnqEntity, formObj);
+			
+			//set data in model object
+			model.addAttribute("courseName",courseNames );
+			model.addAttribute("StatusNames",enqStatus );
+			model.addAttribute("formObj",formObj );
+			
 		}
 		
 		return"add-enquiry";
